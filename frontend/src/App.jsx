@@ -12,6 +12,9 @@ import Products from './pages/Products'
 
 import Login from "./admin/Login"
 import Dashboard from './admin/Dashboard'
+import AdminLayout from "./admin/AdminLayout";
+import ProductList from "./admin/ProductList";
+import ProductForm from "./admin/ProductForm";
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -53,7 +56,12 @@ export default function App() {
 
           {/* Admin */}
           <Route path="/admin" element={<Login />} />
-          <Route path="/admin/dashboard" element={<Dashboard />} />
+         <Route path="/admin" element={<AdminLayout />}>
+    <Route path="dashboard" element={<Dashboard />} />
+    <Route path="products" element={<ProductList />} />
+    <Route path="products/add" element={<ProductForm />} />
+    <Route path="products/edit/:id" element={<ProductForm />} />
+  </Route>
         </Routes>
       </LayoutWrapper>
 

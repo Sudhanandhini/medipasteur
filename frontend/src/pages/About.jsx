@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import ban from '../assets/ban.jpg'
 
 const timeline = [
   { year: '1989', title: 'Founded in Bengaluru', desc: 'MediPasteur established as a small pharmaceutical distribution firm serving Karnataka hospitals.' },
@@ -29,7 +30,10 @@ export default function About() {
   return (
     <div className="pt-[72px]">
       {/* Hero */}
-      <section className="py-20" style={{background:'linear-gradient(135deg,#384a72,#253557)'}}>
+      <section className="py-20" style={{backgroundImage: `
+      linear-gradient(135deg, rgba(80, 80, 80, 0.85), rgba(80, 80, 80, 0.85)),
+      url(${ban})
+    `, backgroundPosition:'center', backgroundRepeat:'no-repeat', }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2 text-white/50 text-sm mb-4">
             <Link to="/" className="hover:text-white transition-colors">Home</Link>
@@ -39,7 +43,7 @@ export default function About() {
           <div className="max-w-3xl">
             <span className="inline-block bg-white/10 border border-white/20 text-white/80 text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full mb-5">Our Story</span>
             <h1 className="text-5xl font-extrabold text-white mb-5 leading-tight">
-              35 Years of Advancing<br/><span style={{color:'#4e897d'}}>Healthcare in India</span>
+              35 Years of Advancing<br/><span style={{color:'#83bbb0'}}>Healthcare in India</span>
             </h1>
             <p className="text-white/70 text-lg leading-relaxed">Founded in Bengaluru in 1989, MediPasteur has grown from a regional distributor into one of India's most trusted pharmaceutical manufacturers, serving over 2,000 institutions across 25 states.</p>
           </div>

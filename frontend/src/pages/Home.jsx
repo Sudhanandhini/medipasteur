@@ -37,7 +37,7 @@ const stats = [
 ]
 
 /* ─── Categories ─── */
-const categories = [
+const CATEGORIES = [
   {
     to: '/products/gyne',
     color: '#f0f7f6',
@@ -47,9 +47,9 @@ const categories = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 2C8.13 2 5 5.13 5 9c0 2.97 1.7 5.53 4.17 6.8L8 21h2l.5-2h3l.5 2h2l-1.17-5.2C17.3 14.53 19 11.97 19 9c0-3.87-3.13-7-7-7z"/>
       </svg>
     ),
-    title: 'Gynaecology',
+    title: 'Gynae',
     desc: 'Comprehensive women\'s health solutions — from PCOS management and prenatal care to menopause relief and fertility support.',
-    count: '5 Products',
+    count: '16 Products',
   },
   {
     to: '/products/ortho',
@@ -62,7 +62,7 @@ const categories = [
     ),
     title: 'Orthopaedics',
     desc: 'Advanced bone, joint and muscle health formulations including calcium supplements, anti-inflammatory gels and mobility enhancers.',
-    count: '4 Products',
+    count: 'Coming Soon',
   },
   {
     to: '/products/gp',
@@ -75,7 +75,7 @@ const categories = [
     ),
     title: 'General Practice',
     desc: 'Trusted first-line therapies for everyday ailments — immunity boosters, antacids, cough & cold, and broad-spectrum vitamins.',
-    count: '4 Products',
+    count: '27 Products',
   },
   {
     to: '/products/dvd',
@@ -89,7 +89,33 @@ const categories = [
     ),
     title: 'Dermatology (DVD)',
     desc: 'Targeted skin-care therapeutics covering anti-acne, deep moisturisation, anti-fungal treatments and broad-spectrum sun protection.',
-    count: '4 Categories',
+    count: '12 Products',
+  },
+  {
+    to: '/products/ent',
+    color: '#ecfeff',
+    border: '#0e7490',
+    icon: (
+      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#0e7490" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+      </svg>
+    ),
+    title: 'ENT',
+    desc: 'Ear, nose and throat therapeutic range — nasal decongestants, ear drops, throat antiseptics and antihistamines for ENT specialists.',
+    count: 'ENT Range',
+  },
+  {
+    to: '/products/surgeon',
+    color: '#f5f3ff',
+    border: '#7c3aed',
+    icon: (
+      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#7c3aed" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/>
+      </svg>
+    ),
+    title: 'Surgeon',
+    desc: 'Surgical support formulations including wound care, anti-infectives, analgesics and post-operative nutritional supplements.',
+    count: 'Surgical Range',
   },
 ]
 
@@ -290,6 +316,96 @@ function TestimonialSlider() {
   )
 }
 
+/* ─── Category Slider ─── */
+function CategorySlider() {
+  const [current, setCurrent] = useState(0)
+  const perPage = 3
+  const total = CATEGORIES.length
+  const maxIndex = total - perPage
+
+  const prev = () => setCurrent(c => Math.max(c - 1, 0))
+  const next = () => setCurrent(c => Math.min(c + 1, maxIndex))
+
+  return (
+    <section className="py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-14">
+          <span className="section-badge">Our Product Range</span>
+          <h2 className="mt-4 text-4xl font-extrabold text-gray-900">Comprehensive Healthcare Solutions</h2>
+          <div className="mx-auto mt-4 w-16 h-1 rounded-full" style={{backgroundColor:'#4e897d'}}></div>
+          <p className="mt-5 text-gray-500 max-w-2xl mx-auto leading-relaxed">
+            Browse our curated range of high-quality pharmaceutical products designed to meet the rigorous demands of modern clinical practice.
+          </p>
+        </div>
+
+        {/* Desktop: slider */}
+        <div className="relative hidden sm:block">
+          <div className="overflow-hidden">
+            <div
+              className="flex transition-transform duration-500 ease-in-out gap-6"
+              style={{ transform: `translateX(calc(-${current * (100 / perPage)}% - ${current * 8}px))` }}
+            >
+              {CATEGORIES.map(c => (
+                <Link to={c.to} key={c.to}
+                  className="group bg-white rounded-2xl border-2 p-7 card-hover flex flex-col flex-shrink-0"
+                  style={{ width: `calc(${100 / perPage}% - ${(perPage - 1) * 8 / perPage}px)`, borderColor: c.border + '30', backgroundColor: c.color + '80' }}>
+                  <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style={{backgroundColor: c.border + '15'}}>
+                    {c.icon}
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">{c.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed flex-1">{c.desc}</p>
+                  <div className="mt-5 flex items-center justify-between">
+                    <span className="text-xs font-semibold px-2.5 py-1 rounded-full" style={{backgroundColor: c.border + '15', color: c.border}}>{c.count}</span>
+                    <span className="text-sm font-semibold group-hover:translate-x-1 inline-block duration-200 transition-transform" style={{color: c.border}}>Explore →</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Arrows */}
+          <button onClick={prev} disabled={current === 0}
+            className="absolute -left-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white border border-gray-200 shadow flex items-center justify-center hover:bg-gray-50 transition disabled:opacity-30">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="#384a72" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <button onClick={next} disabled={current >= maxIndex}
+            className="absolute -right-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white border border-gray-200 shadow flex items-center justify-center hover:bg-gray-50 transition disabled:opacity-30">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="#384a72" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </button>
+
+          {/* Dots */}
+          <div className="flex justify-center gap-2 mt-8">
+            {Array.from({length: maxIndex + 1}).map((_, i) => (
+              <button key={i} onClick={() => setCurrent(i)}
+                className="rounded-full transition-all duration-300"
+                style={{ width: i === current ? 28 : 8, height: 8, backgroundColor: i === current ? '#4e897d' : '#d1d5db' }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile: vertical stack */}
+        <div className="sm:hidden grid grid-cols-1 gap-4">
+          {CATEGORIES.map(c => (
+            <Link to={c.to} key={c.to}
+              className="group bg-white rounded-2xl border-2 p-6 flex items-center gap-4"
+              style={{borderColor: c.border + '30', backgroundColor: c.color + '80'}}>
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{backgroundColor: c.border + '15'}}>
+                {c.icon}
+              </div>
+              <div className="flex-1">
+                <h3 className="font-bold text-gray-900">{c.title}</h3>
+                <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">{c.desc}</p>
+              </div>
+              <span className="text-sm font-semibold" style={{color: c.border}}>→</span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function Home() {
   return (
     <div className="pt-[72px]">
@@ -381,38 +497,7 @@ export default function Home() {
       </section>
 
       {/* ─── PRODUCT CATEGORIES ─── */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <span className="section-badge">Our Product Range</span>
-            <h2 className="mt-4 text-4xl font-extrabold text-gray-900">Comprehensive Healthcare Solutions</h2>
-            <div className="mx-auto mt-4 w-16 h-1 rounded-full" style={{backgroundColor:'#4e897d'}}></div>
-            <p className="mt-5 text-gray-500 max-w-2xl mx-auto leading-relaxed">
-              Browse our curated range of high-quality pharmaceutical products designed to meet the rigorous demands of modern clinical practice.
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {categories.map(c => (
-              <Link to={c.to} key={c.to}
-                className="group bg-white rounded-2xl border-2 p-7 card-hover flex flex-col"
-                style={{borderColor: c.border + '30', backgroundColor: c.color + '80'}}>
-                <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style={{backgroundColor: c.border + '15'}}>
-                  {c.icon}
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{c.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed flex-1">{c.desc}</p>
-                <div className="mt-5 flex items-center justify-between">
-                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full" style={{backgroundColor: c.border + '15', color: c.border}}>{c.count}</span>
-                  <span className="text-sm font-semibold transition-colors group-hover:translate-x-1 inline-block duration-200" style={{color: c.border}}>
-                    Explore →
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CategorySlider />
 
       {/* ─── FEATURED PRODUCTS ─── */}
       <section className="py-24 bg-gray-50">

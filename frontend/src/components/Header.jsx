@@ -12,10 +12,12 @@ const Logo = () => (
 )
 
 const productCategories = [
-  { label: 'Gynaecology', to: '/products/gyne', icon: '♀', desc: '5 premium products' },
+  { label: 'Gynaecology', to: '/products/gyne', icon: '♀', desc: 'Women\'s health range' },
   { label: 'Orthopaedics', to: '/products/ortho', icon: '🦴', desc: 'Bone & joint care' },
   { label: 'General Practice', to: '/products/gp', icon: '💊', desc: 'Broad-spectrum range' },
   { label: 'Dermatology (DVD)', to: '/products/dvd', icon: '✦', desc: '4 skin care categories' },
+  { label: 'ENT', to: '/products/ent', icon: '👂', desc: 'Ear, nose & throat care' },
+  { label: 'Surgeon', to: '/products/surgeon', icon: '🔬', desc: 'Surgical support range' },
 ]
 
 export default function Header() {
@@ -60,18 +62,20 @@ export default function Header() {
                 </svg>
               </NavLink>
               {dropdownOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-72 bg-white rounded-2xl shadow-2xl border border-gray-100 p-2 z-50">
-                  {productCategories.map(c => (
-                    <Link key={c.to} to={c.to} className="flex items-start gap-3 p-3 rounded-xl hover:bg-primary-50 group transition-colors">
-                      <div className="w-9 h-9 rounded-lg bg-secondary-50 flex items-center justify-center text-base flex-shrink-0 group-hover:bg-secondary transition-colors">
-                        {c.icon}
-                      </div>
-                      <div>
-                        <div className="font-semibold text-sm text-gray-800 group-hover:text-primary">{c.label}</div>
-                        <div className="text-xs text-gray-500">{c.desc}</div>
-                      </div>
-                    </Link>
-                  ))}
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-[540px] bg-white rounded-2xl shadow-2xl border border-gray-100 p-2 z-50">
+                  <div className="grid grid-cols-2 gap-1">
+                    {productCategories.map(c => (
+                      <Link key={c.to} to={c.to} className="flex items-start gap-3 p-3 rounded-xl hover:bg-primary-50 group transition-colors">
+                        <div className="w-9 h-9 rounded-lg bg-secondary-50 flex items-center justify-center text-base flex-shrink-0 group-hover:bg-secondary transition-colors">
+                          {c.icon}
+                        </div>
+                        <div>
+                          <div className="font-semibold text-sm text-gray-800 group-hover:text-primary">{c.label}</div>
+                          <div className="text-xs text-gray-500">{c.desc}</div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>

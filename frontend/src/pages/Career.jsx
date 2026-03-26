@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import ban from '../assets/ban.jpg'
 
 const openings = [
   { id: 1, title: 'Medical Representative – Gynaecology', location: 'Bengaluru / Mysuru', type: 'Full-time', dept: 'Sales', exp: '1–3 years', desc: 'Promote MediPasteur\'s gynaecology portfolio to OBGYNs, gynaecologists and fertility clinics. Strong communication and relationship-building skills required.' },
@@ -32,7 +33,11 @@ export default function Career() {
   return (
     <div className="pt-[72px]">
       {/* Hero */}
-      <section className="py-20" style={{background:'linear-gradient(135deg,#384a72,#253557)'}}>
+      <section className="py-20" style={{backgroundImage: `
+      linear-gradient(135deg, rgba(80, 80, 80, 0.85), rgba(80, 80, 80, 0.85)),
+      url(${ban})
+    `, backgroundPosition:'center', backgroundRepeat:'no-repeat', }}
+>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2 text-white/50 text-sm mb-4">
             <Link to="/" className="hover:text-white transition-colors">Home</Link>

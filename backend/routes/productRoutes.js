@@ -4,6 +4,9 @@ const controller = require("../controllers/productController");
 const auth = require("../middleware/auth");
 const upload = require("../config/upload");
 
+router.get("/", controller.getAllProducts);
+router.get("/category/:slug", controller.getProductsBySlug);
+router.get("/item/:id", controller.getProductById);
 router.get("/:categoryId", controller.getProducts);
 
 router.delete("/:id", auth, controller.deleteProduct);

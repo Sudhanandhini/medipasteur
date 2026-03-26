@@ -1,5 +1,21 @@
 const db = require("../config/db");
 
+exports.getAllProducts = (callback) => {
+  db.query("SELECT * FROM products ORDER BY created_at DESC", callback);
+};
+
+exports.getProductById = (id, callback) => {
+  db.query("SELECT * FROM products WHERE id = ?", [id], callback);
+};
+
+exports.getProductsByCategorySlug = (slug, callback) => {
+  db.query(
+    "SELECT p.* FROM products p JOIN categories c ON p.category_id = c.id WHERE c.slug = ? ORDER BY p.id ASC",
+    [slug],
+    callback
+  );
+};
+
 exports.getProductsByCategory = (categoryId, callback) => {
   db.query(
     "SELECT * FROM products WHERE category_id = ?",
