@@ -95,10 +95,10 @@ const categories = [
 
 /* ─── Featured Products ─── */
 const featured = [
-  { cat: 'Gynaecology', tag: 'gyne', name: 'OvaCycle Tablets', sku: 'MP-GY-001', desc: 'Hormonal balance & PCOS management with natural phytoestrogens and inositol complex.', color: '#4e897d' },
-  { cat: 'Orthopaedics', tag: 'ortho', name: 'OsteoMax Tablets', sku: 'MP-OR-001', desc: 'High-absorption calcium carbonate with Vitamin D3 & K2 for optimal bone mineralisation.', color: '#384a72' },
-  { cat: 'General Practice', tag: 'gp', name: 'ImmunoShield Syrup', sku: 'MP-GP-001', desc: 'Zinc, Vitamin C and elderberry extract for robust immune system support.', color: '#d97706' },
-  { cat: 'Dermatology', tag: 'dvd', name: 'AcneClear Gel', sku: 'MP-DV-001', desc: 'Salicylic acid & niacinamide formulation for effective acne reduction and pore refinement.', color: '#be185d' },
+  { cat: 'Gynaecology', tag: 'gyne', name: 'OvaLift ', sku: 'MP-GY-001', desc: 'Hormonal balance & PCOS management with natural phytoestrogens and inositol complex.', color: '#4e897d' },
+  { cat: 'Orthopaedics', tag: 'ortho', name: 'Pacy-P ', sku: 'MP-OR-001', desc: 'High-absorption calcium carbonate with Vitamin D3 & K2 for optimal bone mineralisation.', color: '#384a72' },
+  { cat: 'General Practice', tag: 'gp', name: 'Paskof-D', sku: 'MP-GP-001', desc: 'Zinc, Vitamin C and elderberry extract for robust immune system support.', color: '#d97706' },
+  { cat: 'Dermatology', tag: 'dvd', name: 'Pas Gel', sku: 'MP-DV-001', desc: 'Salicylic acid & niacinamide formulation for effective acne reduction and pore refinement.', color: '#be185d' },
 ]
 
 /* ─── Services ─── */
