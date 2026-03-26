@@ -4,7 +4,7 @@ export default function Dashboard() {
   const [products, setProducts] = useState([]);
 
   const fetchProducts = async () => {
-    const res = await fetch("http://localhost:5000/api/products/1");
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/products`);
     const data = await res.json();
     setProducts(data);
   };
@@ -16,7 +16,7 @@ export default function Dashboard() {
   const deleteProduct = async (id) => {
     const token = localStorage.getItem("token");
 
-    await fetch(`http://localhost:5000/api/products/${id}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/products/${id}`, {
       method: "DELETE",
       headers: { Authorization: token }
     });

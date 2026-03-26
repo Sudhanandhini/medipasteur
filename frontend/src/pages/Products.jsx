@@ -66,7 +66,7 @@ function ProductCard({ product, color }) {
 
         {product.image && (
           <img
-            src={`http://localhost:5000/uploads/${product.image}`}
+            src={`${import.meta.env.VITE_API_URL}/uploads/${product.image}`}
             alt={product.name}
             className="w-full h-40 object-cover rounded-xl mb-3"
           />
@@ -141,7 +141,7 @@ export default function Products() {
 
   useEffect(() => {
     setLoading(true)
-    fetch(`http://localhost:5000/api/products/category/${activeKey}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/products/category/${activeKey}`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(Array.isArray(data) ? data : [])

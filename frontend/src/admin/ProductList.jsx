@@ -11,14 +11,14 @@ export default function ProductList() {
   const token = localStorage.getItem("token");
 
   const fetchProducts = async () => {
-    const res = await fetch("http://localhost:5000/api/products");
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/products`);
     const data = await res.json();
     setProducts(data);
   };
 
   useEffect(() => {
     fetchProducts();
-    fetch("http://localhost:5000/api/categories")
+    fetch(`${import.meta.env.VITE_API_URL}/api/categories`)
       .then((r) => r.json())
       .then((d) => setCategories(d))
       .catch(() => {});
@@ -26,7 +26,7 @@ export default function ProductList() {
 
   const deleteProduct = async (id) => {
     if (!window.confirm("Delete this product?")) return;
-    await fetch(`http://localhost:5000/api/products/${id}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/products/${id}`, {
       method: "DELETE",
       headers: { Authorization: token },
     });
@@ -171,7 +171,7 @@ export default function ProductList() {
                   <td className="p-3">
                     {p.image ? (
                       <img
-                        src={`http://localhost:5000/uploads/${p.image}`}
+                        src={`${import.meta.env.VITE_API_URL}/uploads/${p.image}`}
                         className="w-12 h-12 rounded-lg object-cover"
                         alt={p.name}
                       />

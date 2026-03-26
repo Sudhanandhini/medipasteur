@@ -9,7 +9,7 @@ export default function AdminLayout() {
         <h2 className="text-xl font-bold mb-6">Admin</h2>
 
         <nav className="space-y-3">
-          <Link to="/admin/dashboard">Dashboard</Link>
+          {/* <Link to="/admin/dashboard">Dashboard</Link> */}
           <Link to="/admin/products">Products</Link>
         </nav>
       </div>

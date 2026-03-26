@@ -21,7 +21,7 @@ export default function ProductForm() {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/categories")
+    fetch(`${import.meta.env.VITE_API_URL}/api/categories`)
       .then((res) => res.json())
       .then((data) => setCategories(data))
       .catch(() => {});
@@ -29,7 +29,7 @@ export default function ProductForm() {
 
   useEffect(() => {
     if (id) {
-      fetch(`http://localhost:5000/api/products/item/${id}`)
+      fetch(`${import.meta.env.VITE_API_URL}/api/products/item/${id}`)
         .then((res) => res.json())
         .then((data) => {
           setForm({
@@ -63,8 +63,8 @@ export default function ProductForm() {
       if (form.image) formData.append("image", form.image);
 
       const url = id
-        ? `http://localhost:5000/api/products/${id}`
-        : `http://localhost:5000/api/products`;
+        ? `${import.meta.env.VITE_API_URL}/api/products/${id}`
+        : `${import.meta.env.VITE_API_URL}/api/products`;
 
       const res = await fetch(url, {
         method: id ? "PUT" : "POST",
