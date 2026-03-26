@@ -43,7 +43,7 @@ export default function About() {
           <div className="max-w-3xl">
             <span className="inline-block bg-white/10 border border-white/20 text-white/80 text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full mb-5">Our Story</span>
             <h1 className="text-5xl font-extrabold text-white mb-5 leading-tight">
-              35 Years of Advancing<br/><span style={{color:'#83bbb0'}}>Healthcare in India</span>
+              16 Years of Advancing<br/><span style={{color:'#83bbb0'}}>Healthcare in India</span>
             </h1>
             <p className="text-white/70 text-lg leading-relaxed">Founded in Bengaluru in 1989, MediPasteur has grown from a regional distributor into one of India's most trusted pharmaceutical manufacturers, serving over 2,000 institutions across 25 states.</p>
           </div>
@@ -72,7 +72,7 @@ export default function About() {
       <section className="py-16 bg-gray-50 border-y border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-            {[['35+','Years of Expertise'],['500+','Products in Catalogue'],['2000+','Institutions Served'],['25','States Covered']].map(([v,l])=>(
+            {[['16+','Years of Expertise'],['500+','Products in Catalogue'],['2000+','Institutions Served'],['25','States Covered']].map(([v,l])=>(
               <div key={l} className="py-6">
                 <div className="text-4xl font-extrabold text-primary mb-2">{v}</div>
                 <div className="text-xs font-semibold uppercase tracking-widest text-gray-500">{l}</div>

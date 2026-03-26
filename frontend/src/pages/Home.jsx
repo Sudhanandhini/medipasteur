@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 import ban1 from "../assets/ban1.jpg"
 import ban2 from "../assets/ban2.jpg"
 import ban3 from "../assets/ban3.jpg"
+import img1 from "../assets/ban1.jpg"
+import img2 from "../assets/ban2.jpg"
+import img3 from "../assets/ban3.jpg"
+import img4 from "../assets/ban4.jpg"
 
 /* ─── Animated Counter ─── */
 function Counter({ target, suffix = '' }) {
@@ -30,7 +34,7 @@ function Counter({ target, suffix = '' }) {
 
 /* ─── Stats ─── */
 const stats = [
-  { icon: '🏆', value: 35, suffix: '+', label: 'Years of Expertise' },
+  { icon: '🏆', value: 16, suffix: '+', label: 'Years of Expertise' },
   { icon: '💊', value: 500, suffix: '+', label: 'Products in Catalogue' },
   { icon: '🏥', value: 2000, suffix: '+', label: 'Trusted Institutions' },
   { icon: '✅', value: null, label: 'ISO 9001 Certified', badge: 'ISO 9001' },
@@ -121,10 +125,10 @@ const CATEGORIES = [
 
 /* ─── Featured Products ─── */
 const featured = [
-  { cat: 'Gynaecology', tag: 'gyne', name: 'OvaLift ', sku: 'MP-GY-001', desc: 'Hormonal balance & PCOS management with natural phytoestrogens and inositol complex.', color: '#4e897d' },
-  { cat: 'Orthopaedics', tag: 'ortho', name: 'Pacy-P ', sku: 'MP-OR-001', desc: 'High-absorption calcium carbonate with Vitamin D3 & K2 for optimal bone mineralisation.', color: '#384a72' },
-  { cat: 'General Practice', tag: 'gp', name: 'Paskof-D', sku: 'MP-GP-001', desc: 'Zinc, Vitamin C and elderberry extract for robust immune system support.', color: '#d97706' },
-  { cat: 'Dermatology', tag: 'dvd', name: 'Pas Gel', sku: 'MP-DV-001', desc: 'Salicylic acid & niacinamide formulation for effective acne reduction and pore refinement.', color: '#be185d' },
+  { cat: 'Gynaecology', tag: 'gyne', name: 'OvaLift ', sku: 'MP-GY-001', desc: 'Hormonal balance & PCOS management with natural phytoestrogens and inositol complex.', color: '#4e897d' , image:img1 },
+  { cat: 'Orthopaedics', tag: 'ortho', name: 'Trichofol ', sku: 'MP-OR-001', desc: 'High-absorption calcium carbonate with Vitamin D3 & K2 for optimal bone mineralisation.', color: '#384a72', image:img2  },
+  { cat: 'General Practice', tag: 'gp', name: 'Pasivit', sku: 'MP-GP-001', desc: 'Zinc, Vitamin C and elderberry extract for robust immune system support.', color: '#d97706', image:img3  },
+  { cat: 'Dermatology', tag: 'dvd', name: 'Neuropas', sku: 'MP-DV-001', desc: 'Salicylic acid & niacinamide formulation for effective acne reduction and pore refinement.', color: '#be185d', image:img4  },
 ]
 
 /* ─── Services ─── */
@@ -317,95 +321,76 @@ function TestimonialSlider() {
 }
 
 /* ─── Category Slider ─── */
-function CategorySlider() {
-  const [current, setCurrent] = useState(0)
-  const perPage = 3
-  const total = CATEGORIES.length
-  const maxIndex = total - perPage
-
-  const prev = () => setCurrent(c => Math.max(c - 1, 0))
-  const next = () => setCurrent(c => Math.min(c + 1, maxIndex))
-
+function CategoryGrid() {
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Heading */}
         <div className="text-center mb-14">
           <span className="section-badge">Our Product Range</span>
-          <h2 className="mt-4 text-4xl font-extrabold text-gray-900">Comprehensive Healthcare Solutions</h2>
-          <div className="mx-auto mt-4 w-16 h-1 rounded-full" style={{backgroundColor:'#4e897d'}}></div>
-          <p className="mt-5 text-gray-500 max-w-2xl mx-auto leading-relaxed">
+          <h2 className="mt-4 text-4xl font-extrabold text-gray-900">
+            Comprehensive Healthcare Solutions
+          </h2>
+          <div className="mx-auto mt-4 w-16 h-1 rounded-full bg-[#4e897d]"></div>
+          <p className="mt-5 text-gray-500 max-w-2xl mx-auto">
             Browse our curated range of high-quality pharmaceutical products designed to meet the rigorous demands of modern clinical practice.
           </p>
         </div>
 
-        {/* Desktop: slider */}
-        <div className="relative hidden sm:block">
-          <div className="overflow-hidden">
-            <div
-              className="flex transition-transform duration-500 ease-in-out gap-6"
-              style={{ transform: `translateX(calc(-${current * (100 / perPage)}% - ${current * 8}px))` }}
+        {/* GRID LAYOUT */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {CATEGORIES.map((c) => (
+            <Link
+              to={c.to}
+              key={c.to}
+              className="group bg-white rounded-2xl border-2 p-7 flex flex-col card-hover"
+              style={{
+                borderColor: c.border + "30",
+                backgroundColor: c.color + "80",
+              }}
             >
-              {CATEGORIES.map(c => (
-                <Link to={c.to} key={c.to}
-                  className="group bg-white rounded-2xl border-2 p-7 card-hover flex flex-col flex-shrink-0"
-                  style={{ width: `calc(${100 / perPage}% - ${(perPage - 1) * 8 / perPage}px)`, borderColor: c.border + '30', backgroundColor: c.color + '80' }}>
-                  <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style={{backgroundColor: c.border + '15'}}>
-                    {c.icon}
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">{c.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed flex-1">{c.desc}</p>
-                  <div className="mt-5 flex items-center justify-between">
-                    <span className="text-xs font-semibold px-2.5 py-1 rounded-full" style={{backgroundColor: c.border + '15', color: c.border}}>{c.count}</span>
-                    <span className="text-sm font-semibold group-hover:translate-x-1 inline-block duration-200 transition-transform" style={{color: c.border}}>Explore →</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Arrows */}
-          <button onClick={prev} disabled={current === 0}
-            className="absolute -left-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white border border-gray-200 shadow flex items-center justify-center hover:bg-gray-50 transition disabled:opacity-30">
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="#384a72" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/></svg>
-          </button>
-          <button onClick={next} disabled={current >= maxIndex}
-            className="absolute -right-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white border border-gray-200 shadow flex items-center justify-center hover:bg-gray-50 transition disabled:opacity-30">
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="#384a72" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
-          </button>
-
-          {/* Dots */}
-          <div className="flex justify-center gap-2 mt-8">
-            {Array.from({length: maxIndex + 1}).map((_, i) => (
-              <button key={i} onClick={() => setCurrent(i)}
-                className="rounded-full transition-all duration-300"
-                style={{ width: i === current ? 28 : 8, height: 8, backgroundColor: i === current ? '#4e897d' : '#d1d5db' }}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Mobile: vertical stack */}
-        <div className="sm:hidden grid grid-cols-1 gap-4">
-          {CATEGORIES.map(c => (
-            <Link to={c.to} key={c.to}
-              className="group bg-white rounded-2xl border-2 p-6 flex items-center gap-4"
-              style={{borderColor: c.border + '30', backgroundColor: c.color + '80'}}>
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{backgroundColor: c.border + '15'}}>
+              <div
+                className="w-14 h-14 rounded-xl flex items-center justify-center mb-5"
+                style={{ backgroundColor: c.border + "15" }}
+              >
                 {c.icon}
               </div>
-              <div className="flex-1">
-                <h3 className="font-bold text-gray-900">{c.title}</h3>
-                <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">{c.desc}</p>
+
+              <h3 className="text-lg font-bold text-gray-900 mb-2">
+                {c.title}
+              </h3>
+
+              <p className="text-sm text-gray-600 flex-1">
+                {c.desc}
+              </p>
+
+              <div className="mt-5 flex items-center justify-between">
+                <span
+                  className="text-xs font-semibold px-2.5 py-1 rounded-full"
+                  style={{
+                    backgroundColor: c.border + "15",
+                    color: c.border,
+                  }}
+                >
+                  {c.count}
+                </span>
+
+                <span
+                  className="text-sm font-semibold group-hover:translate-x-1 transition"
+                  style={{ color: c.border }}
+                >
+                  Explore →
+                </span>
               </div>
-              <span className="text-sm font-semibold" style={{color: c.border}}>→</span>
             </Link>
           ))}
         </div>
+
       </div>
     </section>
   )
 }
-
 export default function Home() {
   return (
     <div className="pt-[72px]">
@@ -459,7 +444,7 @@ export default function Home() {
 
               {/* Mini stats */}
               <div className="flex flex-wrap gap-8 mt-14 pt-10" style={{borderTop:'1px solid #c5d0e8'}}>
-                {[['35+','Years'], ['500+','Products'], ['2000+','Doctors'], ['ISO 9001','Certified']].map(([v,l]) => (
+                {[['16+','Years'], ['500+','Products'], ['2000+','Doctors'], ['ISO 9001','Certified']].map(([v,l]) => (
                   <div key={l}>
                     <div className="text-2xl font-bold" style={{color:'#1e2d4a'}}>{v}</div>
                     <div className="text-xs font-medium uppercase tracking-wider mt-0.5" style={{color:'#6b7280'}}>{l}</div>
@@ -497,7 +482,7 @@ export default function Home() {
       </section>
 
       {/* ─── PRODUCT CATEGORIES ─── */}
-      <CategorySlider />
+      <CategoryGrid />
 
       {/* ─── FEATURED PRODUCTS ─── */}
       <section className="py-24 bg-gray-50">
@@ -517,9 +502,12 @@ export default function Home() {
             {featured.map(p => (
               <div key={p.sku} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden card-hover group">
                 {/* Image placeholder */}
-                <div className="h-44 flex items-center justify-center" style={{background:`linear-gradient(135deg,${p.color}15,${p.color}30)`}}>
-                  <div className="text-5xl opacity-60">💊</div>
-                  <span className="absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-full text-white" style={{backgroundColor: p.color}}>{p.cat}</span>
+                <div className="h-44  overflow-hidden">
+                
+                  {/* <div className="text-5xl opacity-60">💊</div>
+                  <span className="absolute top-3 left-3 text-xs font-semibold px-2.5 py-1
+                   rounded-full text-white" style={{backgroundColor: p.color}}>{p.cat}</span> */}
+                   <img src={p.image}  alt="image"  />
                 </div>
                 <div className="p-5">
                   <p className="text-xs text-gray-400 font-mono mb-1">{p.sku}</p>
@@ -589,11 +577,14 @@ export default function Home() {
                   </div>
                   <div className="space-y-4">
                     {[
-                      { label: 'GMP Certified Manufacturing', icon: '🏭', done: true },
-                      { label: 'CDSCO Licensed Products', icon: '📜', done: true },
-                      { label: 'Cold-Chain Logistics', icon: '❄️', done: true },
-                      { label: 'Batch-level QC Reports', icon: '🔬', done: true },
-                      { label: 'Pharmacovigilance Support', icon: '🛡️', done: true },
+                      
+  { label: '16+ Years of Ethical & Quality Excellence', icon: '🏆', done: true },
+  { label: 'Strict GMP Certified Processes & Packaging', icon: '🏭' , done: true},
+  { label: 'High Efficacy, Stability & Shelf Life', icon: '✅', done: true },
+  { label: 'Strong Presence Across India', icon: '🏥', done: true },
+  { label: 'Wide Range: Antibiotics, Analgesics & Gynae Care', icon: '💊' , done: true},
+
+                   
                     ].map(item => (
                       <div key={item.label} className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
                         <span className="text-xl">{item.icon}</span>

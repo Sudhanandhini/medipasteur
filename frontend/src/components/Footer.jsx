@@ -64,7 +64,7 @@ export default function Footer() {
             <h4 className="font-semibold text-white text-base mb-4">Categories</h4>
             <div className="w-8 h-0.5 mb-5" style={{backgroundColor:'#4e897d'}}></div>
             <ul className="space-y-3">
-              {[{to:'/products/gyne',l:'Gynaecology'},{to:'/products/ortho',l:'Orthopaedics'},{to:'/products/gp',l:'General Practice'},{to:'/products/dvd',l:'Dermatology'}].map(x=>(
+              {[{to:'/products/gyne',l:'Gynaecology'},{to:'/products/ortho',l:'Orthopaedics'},{to:'/products/gp',l:'General Practice'},{to:'/products/dvd',l:'Dermatology'},{to:'/products/ent',l:'ENT'},{to:'/products/surgeon',l:'Surgeon'}].map(x=>(
                 <li key={x.to}>
                   <Link to={x.to} className="text-sm text-white/65 hover:text-white transition-colors hover:pl-1 inline-block duration-200">{x.l}</Link>
                 </li>
