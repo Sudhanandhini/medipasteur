@@ -69,7 +69,8 @@ export default function ProductList() {
         </div>
         <button
           onClick={() => navigate("/admin/products/add")}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium"
+          className="text-white px-4 py-2 rounded-lg font-medium"
+          style={{ backgroundColor: "#4e897d" }}
         >
           + Add Product
         </button>
@@ -89,7 +90,7 @@ export default function ProductList() {
               placeholder="Name or SKU..."
               value={search}
               onChange={(e) => { setSearch(e.target.value); setFilterSub(""); }}
-              className="w-full border rounded-lg pl-8 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-full border rounded-lg pl-8 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-300"
             />
           </div>
         </div>
@@ -100,7 +101,7 @@ export default function ProductList() {
           <select
             value={filterCategory}
             onChange={(e) => { setFilterCategory(e.target.value); setFilterSub(""); }}
-            className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+            className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-300"
           >
             <option value="">All Categories</option>
             {categories.map((c) => (
@@ -115,7 +116,7 @@ export default function ProductList() {
           <select
             value={filterSub}
             onChange={(e) => setFilterSub(e.target.value)}
-            className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+            className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-300"
           >
             <option value="">All Sub Categories</option>
             {subCategories.map((s) => (
@@ -163,7 +164,7 @@ export default function ProductList() {
                   <td className="p-3 font-medium text-gray-900">{p.name}</td>
                   <td className="p-3 text-gray-500 font-mono text-xs">{p.sku}</td>
                   <td className="p-3">
-                    <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-blue-700">
+                    <span className="px-2 py-0.5 rounded-full text-xs font-semibold" style={{ backgroundColor: "#4e897d15", color: "#4e897d" }}>
                       {getCategoryName(p.category_id)}
                     </span>
                   </td>
@@ -185,7 +186,8 @@ export default function ProductList() {
                     <div className="flex gap-2">
                       <button
                         onClick={() => navigate(`/admin/products/edit/${p.id}`)}
-                        className="px-3 py-1 text-xs bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 font-medium"
+                        className="px-3 py-1 text-xs rounded-lg font-medium"
+                        style={{ backgroundColor: "#4e897d15", color: "#4e897d" }}
                       >
                         Edit
                       </button>

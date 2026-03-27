@@ -5,11 +5,29 @@ import ban from '../assets/ban.jpg'
 export default function Contact() {
   const [form, setForm] = useState({ name:'', email:'', phone:'', specialty:'', subject:'', message:'' })
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const handleChange = e => setForm({...form, [e.target.name]: e.target.value})
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    setSubmitted(true)
+    setLoading(true)
+    setError('')
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/email/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Failed to send')
+      setSubmitted(true)
+      setForm({ name:'', email:'', phone:'', specialty:'', subject:'', message:'' })
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -134,8 +152,11 @@ export default function Contact() {
                         <textarea name="message" value={form.message} onChange={handleChange} required rows={5} placeholder="Please describe your requirement in detail..."
                           className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all resize-none"/>
                       </div>
-                      <button type="submit" className="w-full py-3.5 rounded-xl text-white font-bold text-sm transition-all hover:opacity-90 hover:-translate-y-0.5 shadow-lg" style={{backgroundColor:'#384a72'}}>
-                        Send Message →
+                      {error && (
+                        <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3">{error}</p>
+                      )}
+                      <button type="submit" disabled={loading} className="w-full py-3.5 rounded-xl text-white font-bold text-sm transition-all hover:opacity-90 hover:-translate-y-0.5 shadow-lg disabled:opacity-60 disabled:cursor-not-allowed" style={{backgroundColor:'#384a72'}}>
+                        {loading ? 'Sending…' : 'Send Message →'}
                       </button>
                     </form>
                   </>

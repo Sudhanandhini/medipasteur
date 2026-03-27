@@ -24,11 +24,42 @@ export default function Career() {
   const [activeJob, setActiveJob] = useState(null)
   const [form, setForm] = useState({ name:'', email:'', phone:'', role:'', exp:'', message:'' })
   const [applied, setApplied] = useState(false)
+  const [resumeFile, setResumeFile] = useState(null)
   const [resumeName, setResumeName] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const handleChange = e => setForm({...form, [e.target.name]: e.target.value})
-  const handleFile = e => { if(e.target.files[0]) setResumeName(e.target.files[0].name) }
-  const handleSubmit = e => { e.preventDefault(); setApplied(true) }
+  const handleFile = e => {
+    if (e.target.files[0]) {
+      setResumeFile(e.target.files[0])
+      setResumeName(e.target.files[0].name)
+    }
+  }
+  const handleSubmit = async e => {
+    e.preventDefault()
+    setLoading(true)
+    setError('')
+    try {
+      const fd = new FormData()
+      Object.entries(form).forEach(([k, v]) => fd.append(k, v))
+      if (resumeFile) fd.append('resume', resumeFile)
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/email/apply`, {
+        method: 'POST',
+        body: fd,
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Failed to send')
+      setApplied(true)
+      setForm({ name:'', email:'', phone:'', role:'', exp:'', message:'' })
+      setResumeFile(null)
+      setResumeName('')
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again.')
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <div className="pt-[72px]">
@@ -203,8 +234,11 @@ export default function Career() {
                     <input type="file" className="sr-only" accept=".pdf,.doc,.docx" onChange={handleFile}/>
                   </label>
                 </div>
-                <button type="submit" className="w-full py-3.5 rounded-xl text-white font-bold text-sm transition-all hover:opacity-90 shadow-lg" style={{backgroundColor:'#384a72'}}>
-                  Submit Application →
+                {error && (
+                  <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3">{error}</p>
+                )}
+                <button type="submit" disabled={loading} className="w-full py-3.5 rounded-xl text-white font-bold text-sm transition-all hover:opacity-90 shadow-lg disabled:opacity-60 disabled:cursor-not-allowed" style={{backgroundColor:'#384a72'}}>
+                  {loading ? 'Submitting…' : 'Submit Application →'}
                 </button>
               </form>
             </div>

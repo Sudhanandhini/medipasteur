@@ -25,8 +25,8 @@ function ScrollToTop() {
 function LayoutWrapper({ children }) {
   const location = useLocation()
 
-  // 👉 Check if admin route
-  const isAdmin = location.pathname.startsWith("/admin")
+  // Hide header/footer for admin panel (but not login page)
+  const isAdmin = location.pathname.startsWith("/admin") && location.pathname !== "/admin/login"
 
   return (
     <>
@@ -55,13 +55,14 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
 
           {/* Admin */}
-          <Route path="/admin" element={<Login />} />
-         <Route path="/admin" element={<AdminLayout />}>
-    <Route path="dashboard" element={<Dashboard />} />
-    <Route path="products" element={<ProductList />} />
-    <Route path="products/add" element={<ProductForm />} />
-    <Route path="products/edit/:id" element={<ProductForm />} />
-  </Route>
+          <Route path="/admin/login" element={<Login />} />
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<ProductList />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="products" element={<ProductList />} />
+            <Route path="products/add" element={<ProductForm />} />
+            <Route path="products/edit/:id" element={<ProductForm />} />
+          </Route>
         </Routes>
       </LayoutWrapper>
 

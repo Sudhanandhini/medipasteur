@@ -7,6 +7,12 @@ import img1 from "../assets/ban1.jpg"
 import img2 from "../assets/ban2.jpg"
 import img3 from "../assets/ban3.jpg"
 import img4 from "../assets/ban4.jpg"
+import cat1 from "../assets/1.png"
+import cat2 from "../assets/2.png"
+import cat3 from "../assets/3.png"
+import cat4 from "../assets/4.png"
+import cat5 from "../assets/5.png"
+import cat6 from "../assets/6.png"
 
 /* ─── Animated Counter ─── */
 function Counter({ target, suffix = '' }) {
@@ -35,7 +41,7 @@ function Counter({ target, suffix = '' }) {
 /* ─── Stats ─── */
 const stats = [
   { icon: '🏆', value: 16, suffix: '+', label: 'Years of Expertise' },
-  { icon: '💊', value: 500, suffix: '+', label: 'Products in Catalogue' },
+  { icon: '💊', value: 60, suffix: '+', label: 'Products in Catalogue' },
   { icon: '🏥', value: 2000, suffix: '+', label: 'Trusted Institutions' },
   { icon: '✅', value: null, label: 'ISO 9001 Certified', badge: 'ISO 9001' },
 ]
@@ -46,11 +52,7 @@ const CATEGORIES = [
     to: '/products/gyne',
     color: '#f0f7f6',
     border: '#4e897d',
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#4e897d" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 2C8.13 2 5 5.13 5 9c0 2.97 1.7 5.53 4.17 6.8L8 21h2l.5-2h3l.5 2h2l-1.17-5.2C17.3 14.53 19 11.97 19 9c0-3.87-3.13-7-7-7z"/>
-      </svg>
-    ),
+    image: cat1,
     title: 'Gynae',
     desc: 'Comprehensive women\'s health solutions — from PCOS management and prenatal care to menopause relief and fertility support.',
     count: '16 Products',
@@ -59,11 +61,7 @@ const CATEGORIES = [
     to: '/products/ortho',
     color: '#f0f3f9',
     border: '#384a72',
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#384a72" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 3v11m0 0c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3h3zm6-2v8m0 0c0 1.657 1.343 3 3 3s3-1.343 3-3-1.343-3-3-3h-3z"/>
-      </svg>
-    ),
+    image: cat2,
     title: 'Orthopaedics',
     desc: 'Advanced bone, joint and muscle health formulations including calcium supplements, anti-inflammatory gels and mobility enhancers.',
     count: 'Coming Soon',
@@ -72,11 +70,7 @@ const CATEGORIES = [
     to: '/products/gp',
     color: '#fef9f0',
     border: '#d97706',
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#d97706" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
-      </svg>
-    ),
+    image: cat3,
     title: 'General Practice',
     desc: 'Trusted first-line therapies for everyday ailments — immunity boosters, antacids, cough & cold, and broad-spectrum vitamins.',
     count: '27 Products',
@@ -85,12 +79,7 @@ const CATEGORIES = [
     to: '/products/dvd',
     color: '#fdf2f8',
     border: '#be185d',
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#be185d" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M7 3a4 4 0 014-4 4 4 0 014 4M3 12a9 9 0 0118 0c0 4.97-4.03 9-9 9S3 16.97 3 12z"/>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01"/>
-      </svg>
-    ),
+    image: cat4,
     title: 'Dermatology (DVD)',
     desc: 'Targeted skin-care therapeutics covering anti-acne, deep moisturisation, anti-fungal treatments and broad-spectrum sun protection.',
     count: '12 Products',
@@ -99,11 +88,7 @@ const CATEGORIES = [
     to: '/products/ent',
     color: '#ecfeff',
     border: '#0e7490',
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#0e7490" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
-      </svg>
-    ),
+    image: cat5,
     title: 'ENT',
     desc: 'Ear, nose and throat therapeutic range — nasal decongestants, ear drops, throat antiseptics and antihistamines for ENT specialists.',
     count: 'ENT Range',
@@ -112,11 +97,7 @@ const CATEGORIES = [
     to: '/products/surgeon',
     color: '#f5f3ff',
     border: '#7c3aed',
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="#7c3aed" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/>
-      </svg>
-    ),
+    image: cat6,
     title: 'Surgeon',
     desc: 'Surgical support formulations including wound care, anti-infectives, analgesics and post-operative nutritional supplements.',
     count: 'Surgical Range',
@@ -351,10 +332,10 @@ function CategoryGrid() {
               }}
             >
               <div
-                className="w-14 h-14 rounded-xl flex items-center justify-center mb-5"
+                className="w-14 h-14 rounded-xl flex items-center justify-center mb-5 overflow-hidden"
                 style={{ backgroundColor: c.border + "15" }}
               >
-                {c.icon}
+                <img src={c.image} alt={c.title} className="w-full h-full object-contain p-1" />
               </div>
 
               <h3 className="text-lg font-bold text-gray-900 mb-2">
@@ -443,14 +424,14 @@ export default function Home() {
               </div>
 
               {/* Mini stats */}
-              <div className="flex flex-wrap gap-8 mt-14 pt-10" style={{borderTop:'1px solid #c5d0e8'}}>
+              {/* <div className="flex flex-wrap gap-8 mt-14 pt-10" style={{borderTop:'1px solid #c5d0e8'}}>
                 {[['16+','Years'], ['500+','Products'], ['2000+','Doctors'], ['ISO 9001','Certified']].map(([v,l]) => (
                   <div key={l}>
                     <div className="text-2xl font-bold" style={{color:'#1e2d4a'}}>{v}</div>
                     <div className="text-xs font-medium uppercase tracking-wider mt-0.5" style={{color:'#6b7280'}}>{l}</div>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
 
             {/* ── Right: Image Slider ── */}
